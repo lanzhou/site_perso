@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Mon Curriculum Vitae{% endblock %}
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<form method="post"  role="form" action="">
+{% csrf_token %}
+<input type="text" name="username" placeholder="Utilisateur">
+<input type="password" name="password" placeholder="Mot de passe">
+<input type="submit" value="login" />
+</form>
+
+<h2 class="text-center">Points intéressants</h2>
+<div class="row mb-5">
+  <div class="col-sm-4 offset-md-2">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">CMS</h5>
+        <p class="card-text">Système de gestion de contenu :</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">WordPress</li>
+        <li class="list-group-item">Drupal</li>
+        <li class="list-group-item">phpBB</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Frameworks</h5>
+        <p class="card-text">Frameworks</p>
+        <div class="card-footer"><p class="card-text">Django Symfony Laravel</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-5">
+  <div class="col-sm-4 offset-md-2">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Systèmes de gestion de BDD avec SQL</h5>
+        <p class="card-text">Systèmes de gestion de BDD avec SQL</p>
+        <div class="card-footer"><p class="card-text">MySQL PostgreSQL MariaDB SQLite</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Produits NoSQL</h5>
+        <p class="card-text">Produits NoSQL</p>
+        <div class="card-footer"><p class="card-text">MongoDB</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

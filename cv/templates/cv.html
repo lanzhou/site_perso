@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Mon Curriculum Vitae{% endblock %}
+{% block content %}
+
+
+
+<h2>Mon Curriculum Vitae</h2>
+<div class="row" >
+
+  <div class="col-md-6">
+  <h4 class="text-muted">Expériences Professionnelles</h4>
+  {% for contrat in contratPro %}
+    <div class="col-md-6">
+      {{ contrat.titre|capfirst }}
+    </div>
+    <div class="col-md-6">
+      {{ contrat.date_debut|date:"b Y"|capfirst }} - {{ contrat.date_fin|date:"b Y"|capfirst }}
+      {% if contrat.type_contrat %}
+      ( {{ contrat.type_contrat|upper}} )
+      {% endif %}
+    </div>
+    <div class="col-md-12">
+    {{ contrat.institution|upper }} - {{ contrat.lieu|upper }}
+    </div>
+    <div class="col-md-12">
+      {{ contrat.commentaire|capfirst }}
+    </div>
+  {% empty %}
+      Aucun expérience professionnelle.
+  {% endfor %}
+  </div>
+
+  <div class="col-md-6">
+    <h4 class="text-muted">Formation</h4>
+    {% for contrat in contratUniv %}
+    <div class="col-md-6">
+      {{ contrat.titre|capfirst }}
+    </div>
+    <div class="col-md-6">
+      {{ contrat.date_debut|date:"b Y"|capfirst }} - {{ contrat.date_fin|date:"b Y"|capfirst }}
+    </div>
+    <div class="col-md-12">
+    {{ contrat.institution|upper }} - {{ contrat.lieu|upper }}
+    </div>
+    <div class="col-md-12">
+    {% if contrat.specialite %}
+      Spécialite : {{ contrat.specialite|upper}}
+    {% endif %}
+    {% if contrat.parcours %}
+      Parcours : {{ contrat.parcours|upper}}
+    {% endif %}
+    </div>
+    <div class="col-md-12">
+      {{ contrat.commentaire|capfirst }}
+    </div>
+  {% empty %}
+  <p>Aucun formation.</p>
+  {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Mon Curriculum Vitae{% endblock %}
+{% block content %}
+
+
+<h2>Mon Comptes</h2>
+
+  sommes = {% for donnees in donneesSaisies %}{{ donnees.somme }};{% endfor %}
+
+  institutions = {% for ins in institutions %}{{ ins|safe }} {% endfor %}
+
+  {{ sommes }}
+
+  Donnees = {{ donnees }}
+
+<canvas id="doughnutChart"></canvas>
+
+<script>
+var ctxD = document.getElementById("doughnutChart").getContext('2d');
+var institutions = "{% for ins in institutions %}{{ ins|safe }},{% endfor %}".split(",");
+var sommes = "{% for donnees in donneesSaisies %}{{ donnees.somme|safe }};{% endfor %}".split(";");
+
+//document.write(institutions+"\n");
+//document.write(sommes);
+
+var myLineChart = new Chart(ctxD, {
+    type: 'doughnut',
+    data: {
+        labels : Object.values(institutions),
+        datasets: [
+            {
+                data: Object.values(sommes),
+                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+            }
+        ]
+    },
+    options: {
+        responsive: true
+    }
+});
+</script>
+
+{% endblock %}
